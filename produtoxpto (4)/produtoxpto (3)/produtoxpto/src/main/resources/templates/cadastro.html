@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produtos</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <!-- Menu de Abas -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link active fw-bold" href="/">Cadastrar Produto</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/estoque">Estoque de Produtos</a>
+        </li>
+    </ul>
+
+    <!-- Formulário de Cadastro -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Novo Produto</h5>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/salvar}" th:object="${produto}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nome do Produto</label>
+                    <input type="text" th:field="*{nome}" class="form-control" placeholder="Ex: Camiseta Básica" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Tipo</label>
+                        <select th:field="*{tipo}" class="form-select" required>
+                            <option value="">Selecione...</option>
+                            <option value="Vestuário">Vestuário</option>
+                            <option value="Calçado">Calçado</option>
+                            <option value="Acessório">Acessório</option>
+                            <option value="Eletrônico">Eletrônico</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Tamanho</label>
+                        <select th:field="*{tamanho}" class="form-select" required>
+                            <option value="">Selecione...</option>
+                            <option value="PP">PP</option>
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="Único">Único</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Quantidade em Estoque</label>
+                        <input type="number" th:field="*{quantidade}" class="form-control" min="1" value="1" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Salvar no Estoque</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
